@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KINO — 3D Shoes</title>
+  <meta name="description" content="KINO is a dimensional sneaker house. Spin the shoe, choose a color, and take the pair home.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%2307080a' width='100' height='100'/><path d='M18 62c2-16 8-28 18-34 8 8 14 10 22 6 10-6 22-4 34 10 6 8 8 16 2 20-18 2-62 8-74 4-2-2-3-4-2-6z' fill='%23dff25a'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <div class="loader" id="loader" role="status" aria-live="polite">
+    <div class="loader-inner">
+      <p class="loader-mark">KINO</p>
+      <p class="loader-sub">Forming the last</p>
+      <div class="loader-bar"><span></span></div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <p class="announce">Free shipping on orders over $150</p>
+    <nav class="nav" aria-label="Primary">
+      <a class="logo" href="#top">
+        <span class="logo-mark" aria-hidden="true"></span>
+        KINO
+      </a>
+      <div class="desk-nav">
+        <a href="#catalog">Shop</a>
+        <a href="#detail">Details</a>
+        <a href="#craft">Craft</a>
+        <a href="#studio">Look</a>
+      </div>
+      <div class="nav-actions">
+        <button class="icon-btn menu-btn" id="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+          <span></span><span></span>
+        </button>
+        <button class="icon-btn cart-btn" id="cart-btn" type="button" aria-label="Open cart">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8h12l-1 12H7L6 8z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M9 8V7a3 3 0 0 1 6 0v1" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <span class="badge" id="cart-count" data-count="0"></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <div class="mobile-nav" id="mobile-nav">
+    <a href="#catalog">Shop</a>
+    <a href="#detail">Details</a>
+    <a href="#craft">Craft</a>
+    <a href="#studio">Look</a>
+    <button type="button" id="mobile-cart">Cart</button>
+  </div>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <p class="hero-watermark" aria-hidden="true">KINO</p>
+      <div class="hero-copy">
+        <p class="eyebrow">Drop 03 — Limited pairs</p>
+        <h1>Shoes with a third dimension.</h1>
+        <p class="lede" id="hero-blurb">Aero-knit uppers and a sculpted cloud sole, built to be turned in the light. Drag the shoe. Pick a color. Take the pair home.</p>
+        <div class="hero-meta">
+          <div>
+            <p class="meta-label">Now spinning</p>
+            <p class="meta-name" id="hero-name">Apex Runner</p>
+          </div>
+          <p class="hero-price" id="hero-price">$189</p>
+        </div>
+        <div class="swatches" id="swatches" role="group" aria-label="Shoe colors"></div>
+        <div class="buy-row">
+          <button class="btn" id="hero-add" type="button">Add to cart</button>
+          <button class="btn ghost" id="hero-buy" type="button">Buy now</button>
+        </div>
+        <a class="scroll-cue" href="#catalog">Scroll the collection</a>
+      </div>
+      <div class="hero-stage" id="hero-stage">
+        <div class="glow" aria-hidden="true"></div>
+        <div class="stage-fallback" id="stage-fallback"></div>
+        <div class="stage-caption">
+          <span id="stage-name">Apex Runner</span>
+          <strong id="stage-price">$189</strong>
+        </div>
+        <p class="drag-hint">Drag to rotate</p>
+      </div>
+    </section>
+
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <div class="marquee-group">
+          <span>Aero-knit</span>
+          <span>Cloud foam</span>
+          <span>8 mm drop</span>
+          <span>360° form</span>
+          <span>True to size</span>
+          <span>Limited drop</span>
+        </div>
+        <div class="marquee-group">
+          <span>Aero-knit</span>
+          <span>Cloud foam</span>
+          <span>8 mm drop</span>
+          <span>360° form</span>
+          <span>True to size</span>
+          <span>Limited drop</span>
+        </div>
+      </div>
+    </div>
+
+    <section class="section" id="catalog">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">The collection</p>
+          <h2>Six forms. One last.</h2>
+        </div>
+        <div class="filters" id="filters" role="tablist" aria-label="Filter shoes"></div>
+      </div>
+      <div class="catalog" id="catalog-grid"></div>
+    </section>
+
+    <section class="detail" id="detail">
+      <div class="detail-visual" id="detail-visual"></div>
+      <div class="detail-info" id="detail-info"></div>
+    </section>
+
+    <section class="craft" id="craft">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">The craft</p>
+          <h2>Cut to be seen from every side.</h2>
+        </div>
+      </div>
+      <figure class="craft-banner">
+        <img src="assets/photos/knit.jpg" alt="Close-up of the aero-knit upper">
+      </figure>
+      <div class="craft-grid">
+        <article>
+          <span>01</span>
+          <h3>Aero-knit</h3>
+          <p>A mapped upper that holds its color in direct light and soft shade, with a collar that flexes instead of biting.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>Cloud foam</h3>
+          <p>A sculpted midsole with an 8 mm drop. Light underfoot, wide enough to plant, quiet on pavement.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>Full volume</h3>
+          <p>The hero shoe is a real 3D object. Spin it, then match the color on the pair you want to buy.</p>
+        </article>
+      </div>
+    </section>
+
+    <figure class="lookbook">
+      <img src="assets/photos/lookbook.jpg" alt="Lime and crimson pairs under studio light">
+    </figure>
+
+    <section class="studio" id="studio">
+      <div class="studio-copy">
+        <p class="eyebrow">Studio look</p>
+        <h2>Color is the whole design.</h2>
+        <p>Each pair is the same last, recast. Volt for daylight, ivory for the court, ember for the hour after dark.</p>
+        <a class="btn" href="#detail">Build this pair</a>
+      </div>
+      <div class="studio-visual" id="studio-visual"></div>
+    </section>
+
+    <section class="closer">
+      <p class="eyebrow dark">Ready when you are</p>
+      <h2>Take the pair off the pedestal.</h2>
+      <a class="btn dark" href="#catalog">Shop the drop</a>
+    </section>
+  </main>
+
+  <footer class="footer" id="footer">
+    <div class="footer-grid">
+      <div>
+        <a class="logo" href="#top"><span class="logo-mark" aria-hidden="true"></span>KINO</a>
+        <p>Dimensional footwear for people who look twice. This is a front-end demo — orders are not fulfilled.</p>
+      </div>
+      <form class="news" id="news-form">
+        <label for="news-email">Drop list</label>
+        <div class="news-row">
+          <input id="news-email" type="email" placeholder="Email address" required autocomplete="email">
+          <button class="btn" type="submit">Join</button>
+        </div>
+        <p class="news-note" id="news-note"></p>
+      </form>
+    </div>
+    <div class="footer-base">
+      <span>© 2026 KINO Form · Shoe mesh from the three.js sample model</span>
+      <span>Free returns within 30 days</span>
+    </div>
+  </footer>
+
+  <aside class="drawer" id="cart-drawer" aria-hidden="true">
+    <div class="drawer-backdrop" data-close="cart"></div>
+    <div class="drawer-panel" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+      <header class="panel-head">
+        <h2 id="cart-title">Your cart</h2>
+        <button class="icon-btn" type="button" data-close="cart" aria-label="Close cart">×</button>
+      </header>
+      <div class="cart-items" id="cart-items"></div>
+      <footer class="panel-foot">
+        <div class="totals">
+          <p><span>Subtotal</span><strong id="cart-subtotal">$0</strong></p>
+          <p><span>Shipping</span><strong id="cart-ship">$0</strong></p>
+          <p class="grand"><span>Total</span><strong id="cart-total">$0</strong></p>
+        </div>
+        <button class="btn full" id="cart-checkout" type="button">Checkout</button>
+      </footer>
+    </div>
+  </aside>
+
+  <div class="checkout" id="checkout" aria-hidden="true">
+    <div class="drawer-backdrop" data-close="checkout"></div>
+    <div class="checkout-panel" role="dialog" aria-modal="true" aria-labelledby="check-title">
+      <header class="panel-head">
+        <h2 id="check-title">Buy now</h2>
+        <button class="icon-btn" type="button" data-close="checkout" aria-label="Close checkout">×</button>
+      </header>
+      <div class="checkout-grid">
+        <div class="summary">
+          <p class="eyebrow">Order summary</p>
+          <div id="checkout-items"></div>
+          <p class="grand"><span>Due today</span><strong id="checkout-total">$0</strong></p>
+          <p class="fine">Demo checkout. No payment is taken and nothing ships.</p>
+        </div>
+        <form id="checkout-form" class="check-form">
+          <label>Full name<input name="name" required autocomplete="name" placeholder="Your name"></label>
+          <label>Email<input name="email" type="email" required autocomplete="email" placeholder="you@email.com"></label>
+          <label>Address<input name="address" required autocomplete="street-address" placeholder="Street address"></label>
+          <label>City<input name="city" required autocomplete="address-level2" placeholder="City"></label>
+          <p class="pay-note">Payment · pay on delivery (demo)</p>
+          <p class="form-error" id="form-error"></p>
+          <button class="btn full" type="submit">Place order</button>
+        </form>
+        <div class="success" id="success" hidden>
+          <p class="eyebrow">Order confirmed</p>
+          <h3>You're in.</h3>
+          <p>Order <strong id="order-no"></strong> is locked as a demo. No payment was taken.</p>
+          <button class="btn" id="success-close" type="button">Keep browsing</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
